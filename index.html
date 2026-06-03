@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lễ Tốt Nghiệp - Thu Quyên</title>
+    <style>
+        /* Thiết lập màu nền tảng */
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .player-container {
+            background: linear-gradient(to bottom, #2b2b2b, #121212);
+            max-width: 400px;
+            width: 100%;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Phần Cover Ảnh */
+        .album-art {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #282828;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Thông tin bài hát và Nút Nhạc */
+        .song-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .song-title h1 {
+            font-size: 22px;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .song-title p {
+            margin: 0;
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        .audio-toggle-btn {
+            background-color: #1db954;
+            color: #000;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 10px rgba(29, 185, 84, 0.4);
+        }
+
+        .audio-toggle-btn:hover {
+            transform: scale(1.1);
+            background-color: #1ed760;
+        }
+
+        /* Thanh tiến trình */
+        .progress-container {
+            margin-bottom: 25px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #4f4f4f;
+            border-radius: 2px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            width: 100%;
+            height: 100%;
+            background-color: #1db954;
+            border-radius: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .progress-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #b3b3b3;
+        }
+
+        /* Danh sách bài hát (Lịch trình) */
+        .tracklist {
+            margin-bottom: 30px;
+        }
+
+        .tracklist h2 {
+            font-size: 16px;
+            color: #b3b3b3;
+            border-bottom: 1px solid #282828;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .track {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .track:hover {
+            background-color: #2a2a2a;
+        }
+
+        .track-num {
+            color: #b3b3b3;
+            width: 30px;
+            font-size: 14px;
+        }
+
+        .track-details h3 {
+            margin: 0 0 3px 0;
+            font-size: 15px;
+            font-weight: normal;
+            color: #ffffff;
+        }
+
+        .track-details p {
+            margin: 0;
+            font-size: 13px;
+            color: #b3b3b3;
+            line-height: 1.4;
+        }
+
+        /* Nút Xác nhận Tham dự */
+        .controls {
+            display: flex;
+            justify-content: center;
+        }
+
+        .play-btn {
+            background-color: #1db954;
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            text-align: center;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            background-color: #1ed760;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-container">
+        
+        <div class="album-art">
+            <img src="cover.jpg" alt="Graduation Album Art">
+        </div>
+
+        <div class="song-info">
+            <div class="song-title">
+                <h1>The Graduation Single</h1>
+                <p>Thu Quyên • Lễ Trao Bằng Cử Nhân</p>
+            </div>
+            <button id="playAudioBtn" class="audio-toggle-btn">▶</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-time">
+                <span>2022</span>
+                <span>2026</span>
+            </div>
+        </div>
+
+        <div class="tracklist">
+            <h2>Playlist Hành Trình (Ngày 25/07/2026)</h2>
+            
+            <div class="track">
+                <span class="track-num">1</span>
+                <div class="track-details">
+                    <h3>Check-in & Khởi động</h3>
+                    <p>08:00 Sáng • Sảnh chính, Trung tâm Hội nghị Quốc gia<br>
+                    (Phạm Hùng, Từ Liêm, Hà Nội)</p>
+                </div>
+            </div>
+
+            <div class="track">
+                <span class="track-num">2</span>
+                <div class="track-details">
+                    <h3>Khúc Cao Trào (Nhận Bằng)</h3>
+                    <p>09:30 Sáng • Hội trường lớn, Trung tâm Hội nghị Quốc gia</p>
+                </div>
+            </div>
+
+            <div class="track">
+                <span class="track-num">3</span>
+                <div class="track-details">
+                    <h3>Tung Mũ & Chụp Ảnh</h3>
+                    <p>11:30 Trưa • Khuôn viên ngoài trời</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <a href="#" class="play-btn">XÁC NHẬN THAM DỰ</a>
+        </div>
+    </div>
+
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+    <script>
+        const music = document.getElementById("bgMusic");
+        const playBtn = document.getElementById("playAudioBtn");
+
+        playBtn.addEventListener("click", function() {
+            if (music.paused) {
+                music.play();
+                playBtn.innerHTML = "⏸";
+            } else {
+                music.pause();
+                playBtn.innerHTML = "▶";
+            }
+        });
+    </script>
+</body>
+</html>
